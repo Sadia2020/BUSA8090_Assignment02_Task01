@@ -1,0 +1,85 @@
+
+                            2. a
+
+ubuntu@ip-172-31-17-48:~$ sudo mysql
+mysql> GRANT ALL ON world_x.* TO awkologist@localhost IDENTIFIED BY "awkology"; 
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> quit
+Bye
+ubuntu@ip-172-31-17-48:~$ mysql -u awkologist -p
+Enter password: 
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| compbiol           |
++--------------------+
+2 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+ubuntu@ip-172-31-17-48:~$ mysql -u awkologist -p
+Enter password: 
+mysql> create database world_x;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| compbiol           |
+| world_x            |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> mysql> show databases;mysql> 
+mysql> exit
+Bye
+ubuntu@ip-172-31-17-48:~$ cd world_x-db/
+ubuntu@ip-172-31-17-48:~/world_x-db$ mysql -u awkologist -p world_x < world_x.sql
+Enter password: 
+ubuntu@ip-172-31-17-48:~/world_x-db$ exit
+logout
+
+ubuntu@ip-172-31-17-48:~$ mysql -u awkologist -p
+Enter password: 
+mysql> use world_x;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_world_x |
++-------------------+
+| city              |
+| country           |
+| countryinfo       |
+| countrylanguage   |
++-------------------+
+4 rows in set (0.00 sec)
+
+mysql> 
+                             B.
+
+ubuntu@ip-172-31-17-48:~$ mysql -u awkologist -p world_x -e 'select c.Name, c.Capital, l.Percentage from country as c inner join countrylanguage as l where c.Code=l.CountryCode AND l.Language="English" AND l.Percentage>50 '
+Enter password: 
++----------------------+---------+------------+
+| Name                 | Capital | Percentage |
++----------------------+---------+------------+
+| Australia            |     135 |       81.2 |
+| Belize               |     185 |       50.8 |
+| Bermuda              |     191 |      100.0 |
+| Canada               |    1822 |       60.4 |
+| United Kingdom       |     456 |       97.3 |
+| Gibraltar            |     915 |       88.9 |
+| Ireland              |    1447 |       98.4 |
+| New Zealand          |    3499 |       87.0 |
+| Trinidad and Tobago  |    3336 |       93.5 |
+| United States        |    3813 |       86.2 |
+| Virgin Islands, U.S. |    4067 |       81.7 |
++----------------------+---------+------------+
+ubuntu@ip-172-31-17-48:~$ 
