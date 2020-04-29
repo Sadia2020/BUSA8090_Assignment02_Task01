@@ -1,0 +1,24 @@
+Codes for answer to question no 1 with output
+
+1.a
+
+ubuntu@ip-172-31-17-48:~$ awk '$2<1000 {print $1,$2}' expression.tab
+alr4392 729
+alr4851 633
+
+
+
+1.b
+
+ubuntu@ip-172-31-17-48:~$ awk '/ase/ {print}' annotation.tab
+alr2938	iron superoxide dismutase	Detoxification
+alr4851	preprotein translocase subunit	Protein and peptide secretion
+alr3395	adenylosuccinate lyase	Purine biosynthesis
+alr1207	uridylate kinase	Pyrimidine biosynthesis
+alr5000	CTP synthetase	Pyrimidine biosynthesis
+all3556	succinate-dehydrogenase	TCA cycle
+
+
+1.c
+ubuntu@ip-172-31-17-48:~$ awk '/Purine biosynthesis/ || /Pyrimidine biosynthesis / {print}' annotation.tab
+alr3395	adenylosuccinate lyase	Purine biosynthesis
