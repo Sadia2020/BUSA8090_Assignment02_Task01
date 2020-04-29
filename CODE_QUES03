@@ -1,0 +1,26 @@
+Test_data=read.csv("/Users/Sadia/Desktop/Covid_19.csv")
+library(tidyverse)
+library(ggplot2)
+
+ ggplot(Test_data,aes(x=Death,y=Country))+
+  geom_bar(stat="identity")+
+  ggtitle("COVID-19 deaths per 1M")
+
+p1 <- ggplot(Test_data,aes(x=reorder(Death,Country)), y= Country)+
+  geom_bar(stat= "identity")
+
+ggplot(p1,aes(x=Death,y=Country))+
+  geom_bar(stat="identity")+
+  ggtitle("COVID-19 deaths per 1M")
+
+data <- 
+  Test_data %>%
+  group_by(Death)
+data$Country <- factor(data$Country, levels = data$Country[order(data$Death)])
+
+ggplot(data = data,aes(x=Death,y=Country))+
+  geom_bar(stat="identity")+
+  ggtitle("COVID-19 deaths per 1M")
+
+
+
